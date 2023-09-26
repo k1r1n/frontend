@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ProductCard, AddToCart } from "../component";
 import { productApi } from "../endpoint";
 import { ProductContainer } from "../feature";
 
@@ -36,8 +35,6 @@ export default async function Home() {
           product.map((_product) => (
             <div className="list" key={_product.id}>
               <ProductContainer item={_product} />
-              {/* <ProductCard item={_product} />
-              {_product.stock > 0 && <AddToCart item={_product} />} */}
             </div>
           ))
         ) : (
