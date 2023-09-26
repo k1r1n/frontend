@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import styles from "./styles.module.css";
 import { stockApi, cartApi } from "../../endpoint";
+import { ProductCard } from "../../component";
 
-export const AddToCart = ({ item }) => {
+export const ProductContainer = ({ item }) => {
   const [count, setCount] = useState(1);
 
   const updateStock = async () => {
@@ -44,18 +44,12 @@ export const AddToCart = ({ item }) => {
 
   return (
     <>
-      <span>
-        <button className={styles.button} onClick={() => onCount(-1)}>
-          -
-        </button>
-        {count}
-        <button className={styles.button} onClick={() => onCount(+1)}>
-          +
-        </button>
-      </span>
-      <button className={styles.add} onClick={onAddToCart}>
-        Add to cart
-      </button>
+      <ProductCard
+        item={item}
+        count={count}
+        onCount={onCount}
+        onAddToCart={onAddToCart}
+      />
     </>
   );
 };

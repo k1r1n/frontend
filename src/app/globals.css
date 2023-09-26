@@ -30,5 +30,14 @@ h1 {
 }
 
 .link {
-  color: blue;
+  align-self: end;
+  display: flex;
+}
+
+.left {
+  align-self: start;
+}
+
+hr {
+  margin: 10px 0;
 }

@@ -10,10 +10,8 @@
 }
 
 .add {
-  display: flex;
   border-radius: 4px;
-  padding: 6px 10px;
-  font-size: 16px;
+  padding: 0 10px;
   color: #fff;
   cursor: pointer;
   background-color: #ff6948;
@@ -28,22 +26,18 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin: 10px 0;
   border: 1px solid #dfdfdf;
   padding: 10px;
   border-radius: 4px;
 }
 
-
-.disabled {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  border: 1px solid #bcbcbc;
-  background-color: #c6c6c6;
-  padding: 10px;
+.remove {
   border-radius: 4px;
-}
-
-.soldout {
-  color: red;
+  padding: 0 10px;
+  margin: 0 10px;
+  border: 1px solid;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
 }

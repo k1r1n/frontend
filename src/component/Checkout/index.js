@@ -1,44 +1,48 @@
 "use client";
 import styles from "./styles.module.css";
-import { stockApi } from "../../endpoint";
-import axios from "axios";
+import { stockApi, cartApi } from "../../endpoint";
+import { currency } from "../../util/money";
 
-export const Checkout = ({ cart }) => {
+export const Checkout = ({ cart, summary }) => {
+  const updateStock = async () => {
+    for (const [index, data] of Object.entries(cart)) {
+      await fetch(`${stockApi}/${data.product_id}`, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          count: Number(data.stock) - data.count,
+        }),
+      });
+    }
+  };
+
+  const deleteCart = async () => {
+    for (const [index, data] of Object.entries(cart)) {
+      await fetch(`${cartApi}/${data.id}`, {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+  };
+
   const onCheckout = async () => {
-    const cartId = cart[0].id;
-    const data = await axios(`${stockApi}/${cartId}`, {
-      method: "delete",
-      headers: {
-        accept: "application/json",
-      },
-    });
-    // try {
-    //   const response = await fetch(`${stockApi}/${item.id}`, {
-    //     method: "PUT",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({
-    //       id: 0,
-    //       product_id: "string",
-    //       count: 444,
-    //     }),
-    //   });
-
-    //   if (!response.ok) {
-    //     throw new Error(`Error! status: ${response.status}`);
-    //   }
-
-    //   const result = await response.json();
-    //   return result;
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    await updateStock();
+    await deleteCart();
   };
 
   return (
     <>
-      Total price: {cart.reduce((a, _cart) => a + _cart.price, 0).toFixed(2)}
+      <hr />
+      <span className={styles.total}>
+        <div>Total price</div>
+        <div className={styles.sum}>{currency().format(summary)}</div>
+      </span>
       <button className={styles.button} onClick={onCheckout}>
-        Checkout
+        Check out
       </button>
     </>
   );
