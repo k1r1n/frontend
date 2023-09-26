@@ -1,0 +1,25 @@
+.button {
+  border-radius: 4px;
+  padding: 0 10px;
+  margin: 0 10px;
+  border: 1px solid;
+  color: #fff;
+  cursor: pointer;
+  background-color: #ff9948;
+  user-select: none;
+}
+
+.add {
+  border-radius: 4px;
+  padding: 0 10px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #ff6948;
+}
+
+.add:disabled, .button:disabled {
+  color: #5c5c5c6e;
+  background-color: #5c5c5c6e;
+  outline: none;
+  border: 0px;
+}
